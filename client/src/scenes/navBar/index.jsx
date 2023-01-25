@@ -37,7 +37,7 @@ const Navbar = () => {
 
     // Themes and colours
     const theme = useTheme(); // allows for use of themes from theme.js 
-    const neutralLight = theme.pallete.neutral.light;
+    const neutralLight = theme.palette.neutral.light;
     const dark = theme.palette.neutral.dark;
     const background = theme.palette.background.default;
     const primaryLight = theme.palette.primary.light;
@@ -60,7 +60,7 @@ const Navbar = () => {
                 },
               }}
             >
-              Sociopedia
+              Connectify
             </Typography>
             {isNonMobileScreens && (
               <FlexBetween
