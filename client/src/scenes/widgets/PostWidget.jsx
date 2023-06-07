@@ -23,6 +23,8 @@ import {
     likes,
     comments,
   }) => {
+    console.log(postId);
+    console.log('updated');
     const [isComments, setIsComments] = useState(false);
     const dispatch = useDispatch();
     const token = useSelector((state) => state.token);

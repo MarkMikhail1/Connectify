@@ -4,46 +4,43 @@ import { setPosts } from "state";
 import PostWidget from "./PostWidget";
 
 const PostsWidget = ({ userId, isProfile = false }) => {
-
     const dispatch = useDispatch();
     const posts = useSelector((state) => state.posts);
     const token = useSelector((state) => state.token);
-
-    // Get all posts
+  
     const getPosts = async () => {
-        const response = await fetch("http://localhost:3001/posts", {
+      const response = await fetch("http://localhost:3001/posts", {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` },
-        });
-        const data = await response.json();
-        dispatch(setPosts({ posts: data }));
+      });
+      const data = await response.json();
+      dispatch(setPosts({ posts: data }));
     };
-
-    // Get posts by user only
+  
     const getUserPosts = async () => {
-        const response = await fetch(
+      const response = await fetch(
         `http://localhost:3001/posts/${userId}/posts`,
         {
-            method: "GET",
-            headers: { Authorization: `Bearer ${token}` },
+          method: "GET",
+          headers: { Authorization: `Bearer ${token}` },
         }
-        );
-        const data = await response.json();
-        dispatch(setPosts({ posts: data }));
+      );
+      const data = await response.json();
+      dispatch(setPosts({ posts: data }));
     };
-
+  
     useEffect(() => {
-        if (isProfile) {
+      if (isProfile) {
         getUserPosts();
-        } else {
+      } else {
         getPosts();
-        }
+      }
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
+  
     return (
-        <>
+      <>
         {posts.map(
-            ({
+          ({
             _id,
             userId,
             firstName,
@@ -54,22 +51,22 @@ const PostsWidget = ({ userId, isProfile = false }) => {
             userPicturePath,
             likes,
             comments,
-            }) => (
+          }) => (
             <PostWidget
-                key={_id}
-                postId={_id}
-                postUserId={userId}
-                name={`${firstName} ${lastName}`}
-                description={description}
-                location={location}
-                picturePath={picturePath}
-                userPicturePath={userPicturePath}
-                likes={likes}
-                comments={comments}
+              key={_id}
+              postId={_id}
+              postUserId={userId}
+              name={`${firstName} ${lastName}`}
+              description={description}
+              location={location}
+              picturePath={picturePath}
+              userPicturePath={userPicturePath}
+              likes={likes}
+              comments={comments}
             />
-            )
+          )
         )}
-        </>
+      </>
     );
 };
 
