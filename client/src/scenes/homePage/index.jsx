@@ -29,14 +29,14 @@ const HomePage = () => {
                 flexBasis={isNonMobileScreens ? "42%" : undefined}
                 mt={isNonMobileScreens ? undefined : "2rem"}
                 >
-                <MyPostWidget picturePath={picturePath} />
-                <PostWidget userId={_id} />
+                <MyPostWidget userId={_id} picturePath={picturePath} />
+                <PostWidget userId={_id} picturePath={picturePath} />
                 </Box> 
                 {isNonMobileScreens && (
                 <Box flexBasis="26%">
                     <AdvertWidget />
                     <Box m="2rem 0" />
-                    <FriendListWidget userId={_id} />
+                    <FriendListWidget userId={_id} picturePath={picturePath} />
                 </Box>
                 )}
             </Box>

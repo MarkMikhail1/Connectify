@@ -23,14 +23,14 @@ import {
     likes,
     comments,
   }) => {
-    console.log(postId);
-    console.log('updated');
+    //console.log(postId); 
+    //console.log('updated');
     const [isComments, setIsComments] = useState(false);
     const dispatch = useDispatch();
     const token = useSelector((state) => state.token);
     const loggedInUserId = useSelector((state) => state.user._id);
-    const isLiked = Boolean(likes[loggedInUserId]);
-    const likeCount = Object.keys(likes).length;
+    const isLiked = likes && Boolean(likes[loggedInUserId]);
+    const likeCount = likes ? Object.keys(likes).length : 0;
   
     const { palette } = useTheme();
     const main = palette.neutral.main;
@@ -87,7 +87,7 @@ import {
               <IconButton onClick={() => setIsComments(!isComments)}>
                 <ChatBubbleOutlineOutlined />
               </IconButton>
-              <Typography>{comments.length}</Typography>
+              <Typography>{comments && comments.length ? comments.length : 0}</Typography>
             </FlexBetween>
           </FlexBetween>
   
